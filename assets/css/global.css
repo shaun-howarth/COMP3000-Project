@@ -4,6 +4,7 @@
     --font-large: 24px;
     --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif;
     --main-colour: rgb(189, 229, 224);
+    --main-second-colour: rgb(255,255,255);
 }
 
 html, input, textarea {
@@ -12,4 +13,24 @@ html, input, textarea {
 
 body {
     background: var(--main-colour);
+}
+
+.navbar {
+    background: var(--main-second-colour);
+    
+    
+    font-size: var(--font-larger);
+    text-align: center;
+    padding: 25px 25px 25px 25px;
+    width: auto;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.title-text {
+    font-size: var(--font-larger);
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em;
 }
