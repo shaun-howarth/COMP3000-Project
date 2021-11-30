@@ -1,0 +1,15 @@
+:root {
+    --font-small: 16px;
+    --font-medium: 18px;
+    --font-large: 24px;
+    --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif;
+    --main-colour: rgb(189, 229, 224);
+}
+
+html, input, textarea {
+    font-family: var(--font-family);
+}
+
+body {
+    background: var(--main-colour);
+}
