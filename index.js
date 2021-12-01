@@ -10,5 +10,5 @@ app.get("/", (req, res) => {
 });
 
 app.get("/help", (req, res) => {
-    res.render("");
+    res.render("help");
 });
