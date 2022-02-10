@@ -8,6 +8,10 @@
 /*colours*/
     --main-colour: rgb(189, 229, 224);
     --main-second-colour: rgb(255,255,255);
+    --main-third-colour: rgb(240,240,240);
+    --main-fourth-colour: rgb(180, 174, 174);
+    --main-fifth-colour: rgb(228, 224, 224);
+
     --main-button-colour: rgb(223,131,38);
     --button-icon-colour: rgb(14,12,10);
 
@@ -96,4 +100,31 @@ hr {
     border: none;
     height: 4px;
     background-color: var(--main-button-colour);
+}
+
+/*styling for wide card used in pages*/
+.wide-card {
+    background: var(--main-second-colour);
+    box-shadow: var(--shadow-light);
+    color: var(--black-text-colour);
+    padding: 10px 10px 10px 10px;
+    margin: 20px auto 0 auto;
+    width: calc(100% - 40px - 20px);
+    border-radius: 10px;
+    display: block;
+    font-size: var(--font-small);
+}
+
+/*styling for small card used in pages*/
+.small-card {
+    background: var(--main-second-colour);
+    box-shadow: var(--shadow-light);
+    color: var(--black-text-colour);
+    padding: 10px 10px 10px 10px;
+    margin: 20px auto 0 20px;
+    width: calc(50% - 20px - 20px - 10px);
+    border-radius: 10px;
+    display: inline-block;
+    font-size: var(--font-smaller);
+    vertical-align: top;
 }
