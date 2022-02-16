@@ -1,0 +1,50 @@
+/*styling for card title text*/
+.card-text {
+    font-size: medium;
+    font-weight: bold;
+}
+
+/*styling for card body text*/
+.card-body-text {
+    font-size: medium;
+}
+
+.card-text-align {
+    text-align: center;
+}
+
+/*aligning button center*/
+.button-div {
+    text-align: center;
+}
+
+/*space margining between elements*/
+.margin-space {
+    padding: 30px 10px 0px 5px;
+}
+
+.button-div a {
+    text-decoration: none;
+}
+
+.page-button {
+    fill: var(--button-icon-colour);
+    color: var(--black-text-colour);
+    background-color: var(--main-colour);
+    border-radius: 10px 10px 10px 10px;
+    display: inline-block;
+    font-size: large;
+    padding: 10px 10px 10px 10px;
+    margin: 5px;
+    cursor: pointer;
+    height: 80px;
+    width: 240px;
+    border: none;
+    outline-style: solid;
+    outline-color: var(--nav-bar-outline);
+    transition: 0.25s;
+}
+
+button:hover {
+    background-color: var(--page-button-hover-colour);
+}
