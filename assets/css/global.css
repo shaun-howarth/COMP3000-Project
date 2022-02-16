@@ -13,6 +13,7 @@
     --main-fifth-colour: rgb(228, 224, 224);
 
     --main-button-colour: rgb(223,131,38);
+    --button-hover-colour: rgb(179, 101, 23);
     --button-icon-colour: rgb(14,12,10);
 
     --title-card-shadow: rgb(209, 122, 35);
@@ -68,6 +69,10 @@ body {
     outline-color: var(--nav-bar-outline);
 }
 
+.navbar a {
+    text-decoration: none;
+}
+
 .navbar-button {
     fill: var(--button-icon-colour);
     color: var(--white-text-colour);
@@ -85,11 +90,16 @@ body {
     transition: 0.25s;
 }
 
+/*button hover effects*/
+.navbar button:hover {
+    background-color: var(--button-hover-colour);
+}
+
 .svg-icon {
     padding: 2px 10px 10px 10px;
     width: 40px;
     height: 40px;
-    
+    vertical-align: bottom;
     display: block;
     margin-left: auto;
     margin-right: auto;

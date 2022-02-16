@@ -1,4 +1,4 @@
-body-text {
+.body-text {
     font-size: var(--font-medium);
     font-weight: bold;
 }
