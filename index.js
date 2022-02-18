@@ -7,7 +7,24 @@ const server = app.listen(8080);
 app.set("view engine", "ejs");
 app.use("/assets", express.static("assets"));
 
-// Creating connection to MySQL DB Schema
+// creating connection string to MySQL DB Schema
+
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'COMP3000_SHowarth',
+    password: 'ZdgE160+',
+    database: 'COMP3000_SHowarth'
+});
+
+// db connect method to MySQL
+db.connect((err) => {
+    if(err){
+        throw err;
+    }
+    console.log('Connected to MySQL Database');
+});
+
+
 
 app.get("/", (req, res) => {
     res.render("index");
