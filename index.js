@@ -10,18 +10,19 @@ app.use("/assets", express.static("assets"));
 // creating connection string to MySQL DB Schema
 
 const db = mysql.createConnection({
+//properties
     host: 'localhost',
-    user: 'COMP3000_SHowarth',
-    password: 'ZdgE160+',
-    database: 'COMP3000_SHowarth'
+    user: 'root',
+    password: '',
+    database: ''
 });
 
-// db connect method to MySQL
+// db connect method to MySQL environment
 db.connect((err) => {
-    if(err){
+    if(err) {
         throw err;
     }
-    console.log('Connected to MySQL Database');
+   console.log('Connected to MySQL Database');
 });
 
 
@@ -32,4 +33,8 @@ app.get("/", (req, res) => {
 
 app.get("/help", (req, res) => {
     res.render("help");
+});
+
+app.get("/login", (req, res) => {
+    res.render("login");
 });
