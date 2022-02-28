@@ -68,5 +68,9 @@ button {
     display: block;
     height: 40px;
     margin: 30px auto 0 auto;
-    transition: transform 0.25s;
+    transition: 0.25s;
+}
+
+button:hover {
+    background-color: var(--button-hover-colour);
 }
