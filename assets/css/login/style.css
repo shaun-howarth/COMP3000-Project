@@ -4,7 +4,7 @@ body {
 
 .wide-card, .login-title-card {
     width: 400px;
-    height: 270px;
+    height: 340px;
     margin: 0;
     position: absolute;
     left: calc(50% - 400px / 2 - 10px);
