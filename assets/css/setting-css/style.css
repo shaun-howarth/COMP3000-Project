@@ -1,0 +1,9 @@
+.settings-title-card {
+    height: 40px;
+    padding: 0 10px 0 10px;
+    top: calc((50% - 270px / 2 - 30px) - 40px);
+    background: var(--main-second-colour);
+    border-radius: 10px;
+    outline-style: solid;
+    outline-color: var(--nav-bar-outline);
+}
