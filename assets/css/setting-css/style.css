@@ -31,4 +31,18 @@
     display: block;
     text-decoration: none;
     width: 81px;
+    transition: 0.25s;
+}
+
+button:hover {
+    background-color: var(--button-hover-colour);
+}
+
+a {
+    text-decoration: none;
+}
+
+/*space margining between elements*/
+.margin-space {
+    padding: 30px 10px 0px 5px;
 }
