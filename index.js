@@ -42,3 +42,7 @@ app.get("/login", (req, res) => {
 app.get("/settings" , (req, res) => {
     res.render("settings");
 });
+
+app.get("/kanban-board" , (req, res) => {
+    res.render("kanban-board");
+});
