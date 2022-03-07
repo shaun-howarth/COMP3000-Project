@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const dotenv = require("dotenv");
-require('dotenv').config();
+
+dotenv.config({ path: './.env'});
 
 
 
@@ -10,7 +11,7 @@ require('dotenv').config();
 app.set("view engine", "ejs");
 app.use("/assets", express.static("assets"));
 
-// creating connection string to MySQL DB Schema
+// creating connection string to MySQL DB Schema: Local instance
 
 const db = mysql.createConnection({
     host: process.env["DATABASE_HOST"],
@@ -23,11 +24,10 @@ const db = mysql.createConnection({
 db.connect((err) => {
     if(err) {
         console.log(err);
-    } 
-   console.log('Connected to MySQL Database');
+    } else {
+    console.log('Connected to MySQL Database');
+    }
 });
-
-
 
 app.get("/", (req, res) => {
     res.render("index");
