@@ -1,0 +1,51 @@
+.wrapper {
+    display: flex;
+    padding: 30px;
+    width: 750px;
+    background: var(--kanban-area);
+    border-radius: 5px;
+}
+
+.kanban-column {
+    flex: 1;
+}
+
+.kanban-column:not(:last-child) {
+    margin-right: 30px;
+}
+
+.kanban-column-title {
+    margin-bottom: 20px;
+    color: var(--white-text-colour);
+    font-size: var(--font-large);
+    user-select: none;
+}
+
+.taskcard-input {
+    padding: 10px 15px;
+    box-sizing: border-box;
+    background: var(--main-second-colour);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.kanban-droparea {
+    height: 10px;
+    transition: backgorund 0.20s, height 0.20s;
+}
+
+.kanban-droparea .active {
+    height: 20px;
+    background: var(--kanban-drop);
+}
+
+.taskcard-add {
+    width: 100%;
+    padding: 10px 0;
+    font-size: var(--font-medium);
+    color: var(--white-text-colour);
+    background: var(--taskcard-colour);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
