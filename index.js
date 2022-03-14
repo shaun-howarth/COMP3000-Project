@@ -13,21 +13,21 @@ app.use("/assets", express.static("assets"));
 
 // creating connection string to MySQL DB Schema: Local instance
 
-const db = mysql.createConnection({
-    host: process.env["DATABASE_HOST"],
-    user: process.env["DATABASE_USER"],
-    password: process.env["DATABASE_PASSWORD"],
-    database: process.env["DATABASE"]
-}) 
+//const db = mysql.createConnection({
+    //host: process.env["DATABASE_HOST"],
+    //user: process.env["DATABASE_USER"],
+    //password: process.env["DATABASE_PASSWORD"],
+    //database: process.env["DATABASE"]
+//}) 
 
 //db connect method to MySQL environment
-db.connect((err) => {
-    if(err) {
-        console.log(err);
-    } else {
-    console.log('Connected to MySQL Database');
-    }
-});
+//db.connect((err) => {
+    //if(err) {
+        //console.log(err);
+   // } //else {
+    //console.log('Connected to MySQL Database');
+    //}
+//});
 
 app.get("/", (req, res) => {
     res.render("index");
