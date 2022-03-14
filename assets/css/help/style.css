@@ -54,6 +54,6 @@
 }
 
 /*activation trigger for rotating arrow icon 90 deg when drop down is clicked on: linking to JS*/
-.arrow-icon.active {
+.arrow-icon .active {
     transform: rotate(90deg);
 }
