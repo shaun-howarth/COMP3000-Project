@@ -10,7 +10,7 @@ export default class Card {
         this.elements.input.textContent = content;
         this.content = content;
 
-        // updating the contents of a single task card
+        // updating the contents of a single task card: uses blur
         const onBlur = () => {
             const newContent = this.elements.input.textContent.trim();
 
@@ -20,12 +20,22 @@ export default class Card {
 
             this.content = newContent;
             kanbanAPI.updateItem(id, {
-                content: this.content
-
+                content:this.content
             });
         };
 
         this.elements.input.addEventListener("blur", onBlur);
+        // deleting a single task card and it's contents from double clicking on card: uses blur
+        this.elements.root.addEventListener("dblclick", () => {
+            const check = confirm("Warning: Are you sure you want to delete this Task Card?");
+
+            if (check) {
+                kanbanAPI.deleteItem(id);
+
+                this.elements.input.removeEventListener("blur", onBlur);
+                this.elements.root.parentElement.removeChild(this.elements.root);
+            }
+        });
     }
 
     static createRoot() {
