@@ -20,7 +20,7 @@ export default class Card {
 
             this.content = newContent;
             kanbanAPI.updateItem(id, {
-                content:this.content
+                content: this.content
             });
         };
 
