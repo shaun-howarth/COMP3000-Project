@@ -30,11 +30,11 @@ export default class Column {
         range.selectNode(document.body);
 
         return range.createContextualFragment(`
-            <div class="kanban-column">
-                <span class="kanban-column-title"></span>
-                <div class="kanban-column-cards"></div>
-                <button class="taskcard-add" type="button">+Create Card</button>
-            </div>
+        <<div class="kanban-column">
+        <span class="kanban-column-title"></span>
+        <div class="kanban-column-cards"></div>
+        <button class="taskcard-add" type="button">+Create Card</button>
+    </div>
         `).children[0];
     }
 
