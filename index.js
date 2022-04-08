@@ -53,6 +53,6 @@ app.get("/user-sign-up" , (req, res) => {
     res.render("user-sign-up");
 });
 
-app.listen(8080, () => {
-    console.log("Server started on Port 8080")
+app.listen(3000, () => {
+    console.log("Server started on Port 3000")
 }); 
