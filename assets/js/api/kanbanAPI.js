@@ -13,8 +13,8 @@ export default class kanbanAPI {
         const data = read();
         const column = data.find(column => column.id == columnId);
         const item = {
-            id: Math.floor(Math.random() * 1000000),
-            content
+            id: Math.floor(Math.random() * 100000),
+            content: content
         };
 
         if(!column) {
@@ -44,7 +44,7 @@ export default class kanbanAPI {
             console.error("Item not found.");
         }
 
-        item.column = newData.content == undefined ? item.content : newData.content;
+        item.content = newData.content === undefined ? item.content : newData.content;
 
         // Updating the column and position of the task card.
         if (
@@ -84,7 +84,7 @@ export default class kanbanAPI {
 
 // read function
 function read() {
-    const json = localStorage.getItem("board-data");
+    const json = localStorage.getItem("kanban-data");
     
     if (!json) {
         return [
@@ -107,5 +107,5 @@ function read() {
 }
 // save function
 function save(data) {
-    localStorage.setItem("board-data", JSON.stringify(data));
+    localStorage.setItem("kanban-data", JSON.stringify(data));
 }
