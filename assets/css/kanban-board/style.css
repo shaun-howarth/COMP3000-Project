@@ -29,12 +29,12 @@
     border-radius: 5px;
 }
 
-.kanban-droparea {
+.kanban-dropzone {
     height: 10px;
     transition: backgorund 0.20s, height 0.20s;
 }
 
-.kanban-droparea .active {
+.kanban-dropzone--active {
     height: 20px;
     background: var(--kanban-drop);
 }
