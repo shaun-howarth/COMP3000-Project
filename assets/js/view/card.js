@@ -1,7 +1,10 @@
 import kanbanAPI from "../api/kanbanAPI.js";
+import DropZone from "./DropZone.js";
 
 export default class Card {
     constructor(id, content) {
+        const bottomDropZone = DropZone.createDropZone();
+
         this.elements = {};
         this.elements.root = Card.createRoot();
         this.elements.input = this.elements.root.querySelector(".taskcard-input");
@@ -9,6 +12,7 @@ export default class Card {
         this.elements.root.dataset.id = id;
         this.elements.input.textContent = content;
         this.content = content;
+        this.elements.root.appendChild(bottomDropZone);
 
         // updating the contents of a single task card: uses blur
         const onBlur = () => {
@@ -35,6 +39,14 @@ export default class Card {
                 this.elements.input.removeEventListener("blur", onBlur);
                 this.elements.root.parentElement.removeChild(this.elements.root);
             }
+        });
+
+        this.elements.root.addEventListener("dragstart", e => {
+            e.dataTransfer.setData("text/plain", id);
+        });
+
+        this.elements.input.addEventListener("drop", e => {
+            e.preventDefault();
         });
     }
 
