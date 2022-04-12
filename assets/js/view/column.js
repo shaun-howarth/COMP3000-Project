@@ -1,3 +1,4 @@
+// kanbanAPI, Card & DropZone classes beig imported
 import kanbanAPI from "../api/kanbanAPI.js";
 import Card from "./card.js";
 import DropZone from "./DropZone.js";
@@ -6,7 +7,7 @@ export default class Column {
     constructor(id, title) {
         const topDropZone = DropZone.createDropZone();
 
-
+        // element objects defined
         this.elements = {};
         this.elements.root = Column.createRoot();
         this.elements.title = this.elements.root.querySelector(".kanban-column-title");
@@ -17,15 +18,14 @@ export default class Column {
         this.elements.title.textContent = title;
         this.elements.items.appendChild(topDropZone);
 
+        // creating task card event listener for create task button
         this.elements.addItem.addEventListener ("click", () => {
             const newItem = kanbanAPI.insertItem(id, "");
-
             this.generateCard(newItem);
         });
 
         kanbanAPI.getItems(id).forEach(item => {
             this.generateCard(item);
-
         });
     }
 
@@ -34,6 +34,7 @@ export default class Column {
 
         range.selectNode(document.body);
 
+        // virtual DOM tree being made for kanban board HTML layout: JS dynamically creates the HTML 
         return range.createContextualFragment(`
         <<div class="kanban-column">
         <span class="kanban-column-title"></span>
@@ -46,6 +47,5 @@ export default class Column {
     generateCard(data) {
         const card = new Card(data.id, data.content);
         this.elements.items.appendChild(card.elements.root);
-        
     }
 }

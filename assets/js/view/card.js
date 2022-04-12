@@ -1,3 +1,4 @@
+// kanbanAPI & DropZone classes being imported
 import kanbanAPI from "../api/kanbanAPI.js";
 import DropZone from "./DropZone.js";
 
@@ -5,6 +6,7 @@ export default class Card {
     constructor(id, content) {
         const bottomDropZone = DropZone.createDropZone();
 
+          // element objects defined
         this.elements = {};
         this.elements.root = Card.createRoot();
         this.elements.input = this.elements.root.querySelector(".taskcard-input");
@@ -29,8 +31,9 @@ export default class Card {
         };
 
         this.elements.input.addEventListener("blur", onBlur);
-        // deleting a single task card and it's contents from double clicking on card: uses blur
+        // deleting a single task card and it's contents from double clicking on a card event listener: uses blur
         this.elements.root.addEventListener("dblclick", () => {
+            // "check" constant also containing browser Warning notification message
             const check = confirm("Warning: Are you sure you want to delete this Task Card?");
 
             if (check) {
@@ -41,15 +44,18 @@ export default class Card {
             }
         });
 
+        // drag task card event listener configuration
         this.elements.root.addEventListener("dragstart", e => {
             e.dataTransfer.setData("text/plain", id);
         });
 
+        // drop task card event listener configuration
         this.elements.input.addEventListener("drop", e => {
             e.preventDefault();
         });
     }
 
+    // createRoot function used for creating new data root for new task card
     static createRoot() {
         const range = document.createRange();
 

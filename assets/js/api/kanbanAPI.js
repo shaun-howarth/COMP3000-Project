@@ -1,3 +1,4 @@
+// kanbanAPI data class
 export default class kanbanAPI {
     static getItems(columnId) {
         const column = read().find(column => column.id == columnId);
@@ -9,7 +10,9 @@ export default class kanbanAPI {
         return column.items;
     }
 
+    // insert LocalStorage data item function
     static insertItem(columnId, content) {
+        // constants being declared
         const data = read();
         const column = data.find(column => column.id == columnId);
         const item = {
@@ -27,8 +30,9 @@ export default class kanbanAPI {
         return item;
     }
 
-    // GO BACK TO THIS FUNCTION
+    // update LocalStorage data item function
     static updateItem(itemId, newData) {
+        // constants being declared
         const data = read();
         const [item, currentColumn] = (() => {
             for (const column of data) {
@@ -46,7 +50,7 @@ export default class kanbanAPI {
 
         item.content = newData.content === undefined ? item.content : newData.content;
 
-        // Updating the column and position of the task card.
+        // Updating the column and positioning of the task card
         if (
             newData.columnId !== undefined
             && newData.position !== undefined
@@ -67,7 +71,9 @@ export default class kanbanAPI {
         save(data);
     }
 
+    // delete LocalStorage data item function
     static deleteItem(itemId) {
+        // constants being declared
         const data = read();
 
         for (const column of data) {
@@ -77,13 +83,13 @@ export default class kanbanAPI {
                 column.items.splice(column.items.indexOf(item), 1);
             }
         }
-
         save(data);
     }
 }
 
-// read function
+// read data function
 function read() {
+    // constants being declared
     const json = localStorage.getItem("kanban-data");
     
     if (!json) {
@@ -105,7 +111,10 @@ function read() {
 
     return JSON.parse(json);
 }
-// save function
+
+// save data function
 function save(data) {
+    // Web LocalStorage location and key name being seta and defined.
+    // name of storage key is "kanban-data" and data is being stored in JSON arrays. 
     localStorage.setItem("kanban-data", JSON.stringify(data));
 }
