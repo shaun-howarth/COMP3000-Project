@@ -87,7 +87,7 @@ app.get("/user-sign-up" , (req, res) => {
 
 // Viewing/displaying personnel user records from personnel db table
 app.get("/home-table", (req, res) => {
-    // MySQL query select statement grabbing to view active users only with WHERE clause
+    // MySQL query select statement grabbing to view "active" personnel users only with WHERE clause.
     db.query('SELECT * FROM personnel WHERE status ="active"', (err, rows) => {
 
         if(!err) {
@@ -122,7 +122,7 @@ app.post("/add-personnel", (req, res) => {
     const { first_name, last_name, email, telephone, comments } = req.body;
 
     let searchRecord = req.body.search;
-    // MySQL query for search input box feature on home-table wep page.
+    // MySQL query for adding new personnel user record on home-table wep page.
     db.query('INSERT INTO personnel SET first_name = ?, last_name = ?, email = ?, telephone = ?, comments = ?', [first_name, last_name, email, telephone, comments], (err, rows) => {
 
         if(!err) {
@@ -133,7 +133,16 @@ app.post("/add-personnel", (req, res) => {
     });
 });
 
-// Edit personnel user record
+// Edit (view) personnel user record
 app.get("/edit-personnel/:id", (req, res) => {
-    res.render("edit-personnel.hbs");
+    // MySQL query for editing a personnel user record.
+    db.query('SELECT * FROM personnel WHERE id = ?', [req.params.id], (err, rows) => {
+
+        if(!err) {
+            res.render("edit-personnel.hbs", { rows });
+        } else {
+            console.log(err);
+        }
+        console.log("Data records from personnel table: \n",rows);
+    });
 });

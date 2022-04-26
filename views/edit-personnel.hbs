@@ -1,0 +1,13 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/home-table">Home Table</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+  </ol>
+</nav>
+
+
+<form class="row g-3 needs-validation" method="POST" action="/add-personnel" novalidate>
+    {{#each rows}}
+        {{> personnel-form}}
+    {{/each}}
+</form>
