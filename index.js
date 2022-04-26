@@ -80,12 +80,57 @@ app.get("/user-sign-up" , (req, res) => {
     res.render("user-sign-up.ejs");
 });
 
-// handlebars (hbs) page routes
-//const routes = require("./server/routes/personnel");
-//app.use("/home-table", routes);
+
+// SIGN UP
+// app.post("/sign-up" , (req, res) => {
+//     const {username, email, password} = req.body;
+
+//     // MySQL query
+
+//     if (!empty(username) || !empty(email) || !empty(password)) {
+//         db.query('INSERT INTO users SET username = ?, email = ?, password = ?', [username, email, password], (err) => {
+
+//             if(!err) {
+//                 res.render("login.ejs", { alert: '!'});
+//             } else {
+//                 console.log(err);
+//             }
+//         });
+//     }
+// });
+
+// //LOG IN
+// app.post("/login" , (req, res) => {
+//     const {username, password} = req.body;
+
+//     // MySQL query 
+
+//     if (!empty(username) || !empty(email)) {
+//         db.query('SELECT username, password FROM users WHERE username = ?', [username], (err, rows) => {
+
+//             if(!err) {
+//                 if (rows[0].password === password) {
+//                     res.render("index.ejs", { alert: 'It worked!'});
+//                 } else {
+//                     res.render("login.ejs", { alert: '!'});
+//                 }
+//             } else {
+//                 console.log(err);
+//             }
+//         });
+//     }
+// });
+
+// function empty(string) {
+//     return (string === "" || string === null || string === undefined || string === "undefined");
+// }
 
 
-// Viewing/displaying personnel user records from personnel db table
+
+//--------------------------------------------------------------------------------------------------
+
+
+// Viewing/displaying all personnel user records (personnel db table)
 app.get("/home-table", (req, res) => {
     // MySQL query select statement grabbing to view "active" personnel users only with WHERE clause.
     db.query('SELECT * FROM personnel WHERE status ="active"', (err, rows) => {
@@ -117,7 +162,7 @@ app.get("/add-personnel", (req, res) => {
     res.render("add-personnel.hbs");
 });
 
-// Add new user/ personnel member
+// Add new user/ personnel member record
 app.post("/add-personnel", (req, res) => {
     const { first_name, last_name, email, telephone, comments } = req.body;
 
@@ -133,13 +178,65 @@ app.post("/add-personnel", (req, res) => {
     });
 });
 
-// Edit (view) personnel user record
+// Edit (view user) personnel user record
 app.get("/edit-personnel/:id", (req, res) => {
     // MySQL query for editing a personnel user record.
     db.query('SELECT * FROM personnel WHERE id = ?', [req.params.id], (err, rows) => {
 
         if(!err) {
             res.render("edit-personnel.hbs", { rows });
+        } else {
+            console.log(err);
+        }
+        console.log("Data records from personnel table: \n",rows);
+    });
+});
+
+
+// Edit (update user) personnel user record
+app.post("/edit-personnel/:id", (req, res) => {
+    const { first_name, last_name, email, telephone, comments } = req.body;
+    // MySQL query for editing a personnel user record.
+    db.query('UPDATE personnel SET first_name = ?, last_name = ?, email = ?, telephone = ?, comments = ?  WHERE id = ?', [first_name, last_name, email, telephone, comments, req.params.id], (err, rows) => {
+
+        if(!err) {
+            db.query('SELECT * FROM personnel WHERE id = ?', [req.params.id], (err, rows) => {
+
+                if(!err) {
+                    res.render("edit-personnel.hbs", { rows, alert: `${first_name} has been updated.` });
+                } else {
+                    console.log(err);
+                }
+                console.log("Data records from personnel table: \n",rows);
+            });
+        } else {
+            console.log(err);
+        }
+        console.log("Data records from personnel table: \n",rows);
+    });
+});
+
+// Deleteing pesonnel record from table
+app.get("/:id", (req, res) => {
+    
+    db.query('UPDATE personnel SET status = ? WHERE id = ?', ['deleted', req.params.id], (err, rows) => {
+
+        if(!err) {
+            res.redirect("/home-table");
+        } else {
+            console.log(err);
+        }
+        console.log("Record removed: \n",rows);
+    });
+});
+
+// View single pesonnel record details
+app.get("/view-personnel/:id", (req, res) => {
+    // MySQL query select statement grabbing to view "active" personnel users only with WHERE clause.
+    db.query('SELECT * FROM personnel WHERE id = ?', [req.params.id], (err, rows) => {
+
+        if(!err) {
+            res.render("view-personnel.hbs", { rows });
         } else {
             console.log(err);
         }
