@@ -38,7 +38,7 @@
     margin: 5px;
     cursor: pointer;
     height: 80px;
-    width: 240px;
+    width: auto;
     border: none;
     outline-style: solid;
     outline-color: var(--nav-bar-outline);
