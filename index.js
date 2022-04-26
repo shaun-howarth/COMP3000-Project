@@ -13,6 +13,7 @@ app.listen(4000, () => {
 });
 
 let engines = require("consolidate");
+const { request } = require("http");
 
 //TEMPLATING ENGINES FOR EXPRESS API
 
@@ -54,9 +55,7 @@ db.connect((err) => {
 });
 
 
-
-
-// ejs render page routes
+// EJS render page routes
 app.get("/", (req, res) => {
     res.render("index.ejs");
 });
@@ -86,7 +85,7 @@ app.get("/user-sign-up" , (req, res) => {
 //app.use("/home-table", routes);
 
 
-// view user records from personnel db table
+// Viewing/displaying personnel user records from personnel db table
 app.get("/home-table", (req, res) => {
     // MySQL query select statement grabbing to view active users only with WHERE clause
     db.query('SELECT * FROM personnel WHERE status ="active"', (err, rows) => {
@@ -100,12 +99,10 @@ app.get("/home-table", (req, res) => {
     });
 });
 
-// finding personnel user by seacrh
+// Finding personnel user by seacrh
 app.post("/home-table", (req, res) => {
-
     let searchRecord = req.body.search;
-
-    // MySQL query
+    // MySQL query for search input box feature on home-table wep page.
     db.query('SELECT * FROM personnel WHERE first_name LIKE ? OR last_name LIKE ?', ['%' + searchRecord + '%', '%' + searchRecord + '%'], (err, rows) => {
 
         if(!err) {
@@ -113,8 +110,30 @@ app.post("/home-table", (req, res) => {
         } else {
             console.log(err);
         }
-        console.log("Data records from personnel table: \n",rows);
     });
-
 });
 
+app.get("/add-personnel", (req, res) => {
+    res.render("add-personnel.hbs");
+});
+
+// Add new user/ personnel member
+app.post("/add-personnel", (req, res) => {
+    const { first_name, last_name, email, telephone, comments } = req.body;
+
+    let searchRecord = req.body.search;
+    // MySQL query for search input box feature on home-table wep page.
+    db.query('INSERT INTO personnel SET first_name = ?, last_name = ?, email = ?, telephone = ?, comments = ?', [first_name, last_name, email, telephone, comments], (err, rows) => {
+
+        if(!err) {
+            res.render("add-personnel.hbs", { alert: 'New personnel user added successfully!'});
+        } else {
+            console.log(err);
+        }
+    });
+});
+
+// Edit personnel user record
+app.get("/edit-personnel/:id", (req, res) => {
+    res.render("edit-personnel.hbs");
+});
