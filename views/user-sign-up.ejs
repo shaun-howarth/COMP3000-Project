@@ -14,19 +14,21 @@
     </div>
 
     <div class="wide-card">
-        <span>Email Address</span>
-        <input id="user-email" type="email" placeholder="Email...">
-        <span>Username</span>
-        <input id="user-username" type="text" placeholder="Username...">
-        <span>Password</span>
-        <input id="user-password" type="password" placeholder="Password...">
-        <button type="submit" id="sign-up">Sign Up</button>
+        <form method="POST" action="/sign-up" novalidate>
+            <span>Email Address</span>
+            <input id="user-email" type="email" name="email" placeholder="Email...">
+            <span>Username</span>
+            <input id="user-username" type="text" name="username" placeholder="Username...">
+            <span>Password</span>
+            <input id="user-password" type="password" name="password" placeholder="Password...">
+            <button type="submit" id="sign-up">Sign Up</button>
 
-        <div class="margin-space">
-            <a href="login">
-                <button>Back to Login screen</button>
-            </a>
-        </div>
+            <div class="margin-space">
+                <a href="login">
+                    <button>Back to Login screen</button>
+                </a>
+            </div>
+        </form>
     
     </div>
 

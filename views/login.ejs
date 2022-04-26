@@ -15,15 +15,17 @@
     </div>
     
     <div class="wide-card">
-        <span>Username</span>
-        <input id="user-username" type="text" placeholder="Username...">
-        <span>Password</span>
-        <input id="user-password" type="password" placeholder="Password...">
-        <button id="user-login">Log In</button>
+        <form method="POST" action="/login" novalidate>
+            <span>Username</span>
+            <input id="user-username" type="text" name="username" placeholder="Username...">
+            <span>Password</span>
+            <input id="user-password" type="password" name="password" placeholder="Password...">
+            <button id="user-login">Log In</button>
 
-        <a href="user-sign-up">
-            <button id="user-sign-up">Not signed up? Create account</button>
-        </a>
+            <a href="user-sign-up">
+                <button id="user-sign-up">Not signed up? Create account</button>
+            </a>
+        </form>
     </div>
 
 </body>

@@ -82,48 +82,48 @@ app.get("/user-sign-up" , (req, res) => {
 
 
 // SIGN UP
-// app.post("/sign-up" , (req, res) => {
-//     const {username, email, password} = req.body;
+app.post("/sign-up" , (req, res) => {
+    const {username, email, password} = req.body;
 
-//     // MySQL query
+    // MySQL query
 
-//     if (!empty(username) || !empty(email) || !empty(password)) {
-//         db.query('INSERT INTO users SET username = ?, email = ?, password = ?', [username, email, password], (err) => {
+    if (!empty(username) || !empty(email) || !empty(password)) {
+        db.query('INSERT INTO users SET username = ?, email = ?, password = ?', [username, email, password], (err) => {
 
-//             if(!err) {
-//                 res.render("login.ejs", { alert: '!'});
-//             } else {
-//                 console.log(err);
-//             }
-//         });
-//     }
-// });
+            if(!err) {
+                res.render("login.ejs", { alert: '!'});
+            } else {
+                console.log(err);
+            }
+        });
+    }
+});
 
-// //LOG IN
-// app.post("/login" , (req, res) => {
-//     const {username, password} = req.body;
+//LOG IN
+app.post("/login" , (req, res) => {
+    const {username, password} = req.body;
 
-//     // MySQL query 
+    // MySQL query 
 
-//     if (!empty(username) || !empty(email)) {
-//         db.query('SELECT username, password FROM users WHERE username = ?', [username], (err, rows) => {
+    if (!empty(username) || !empty(email)) {
+        db.query('SELECT username, password FROM users WHERE username = ?', [username], (err, rows) => {
 
-//             if(!err) {
-//                 if (rows[0].password === password) {
-//                     res.render("index.ejs", { alert: 'It worked!'});
-//                 } else {
-//                     res.render("login.ejs", { alert: '!'});
-//                 }
-//             } else {
-//                 console.log(err);
-//             }
-//         });
-//     }
-// });
+            if(!err) {
+                if (rows[0].password === password) {
+                    res.render("index.ejs", { alert: 'It worked!'});
+                } else {
+                    res.render("login.ejs", { alert: '!'});
+                }
+            } else {
+                console.log(err);
+            }
+        });
+    }
+});
 
-// function empty(string) {
-//     return (string === "" || string === null || string === undefined || string === "undefined");
-// }
+function empty(string) {
+    return (string === "" || string === null || string === undefined || string === "undefined");
+}
 
 
 
