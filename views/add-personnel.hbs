@@ -5,20 +5,53 @@
   </ol>
 </nav>
 
-<form class="row g-3 needs-validation" method="POST" action="/add-personnel" novalidate>
-
-<div class="col-6">
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="First Name" name="first_name">
-        <label for="floatingInput">First Name</label>
-    </div>
+{{#if alert}}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{alert}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+{{/if}}
+
+
+
+<form class="row g-3 needs-validation" method="POST" action="/add-personnel" novalidate>
     <div class="col-6">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Last Name" name="last_name">
+            <input type="text" class="form-control" id="floatingInput" placeholder="First Name" name="first_name" novalidate>
+            <label for="floatingInput">First Name</label>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Last Name" name="last_name" novalidate>
             <label for="floatingInput">Last Name</label>
         </div>
     </div>
-    
 
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="email@example.co.uk" name="email" novalidate>
+            <label for="floatingInput">Email</label>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Telephone" name="telephone" novalidate>
+            <label for="floatingInput">Telephone</label>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="comments" placeholder="Provide a comment description..." name="comments" style="height: 200px;" novalidate>{{this.comments}}</textarea>
+            <label for="comments">Comments</label>
+        </div>
+    </div>
+
+    <div class="col-12 d-grid">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+    
 </form>
