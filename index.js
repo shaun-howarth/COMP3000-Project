@@ -3,6 +3,7 @@ const app = express();
 const mysql = require("mysql");
 const dotenv = require("dotenv");
 const ejs = require("ejs");
+const crypto = require("crypto");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const res = require("express/lib/response");
@@ -81,15 +82,13 @@ app.get("/user-sign-up" , (req, res) => {
 });
 
 
-// SIGN UP
+// User Sign up API end point route
 app.post("/sign-up" , (req, res) => {
     const {username, email, password} = req.body;
-
-    // MySQL query
-
+    // if username, email and password fields are empty: do nothing
     if (!empty(username) || !empty(email) || !empty(password)) {
+        // MySQL query to isnsert given input field values into 'users' table to create registering user
         db.query('INSERT INTO users SET username = ?, email = ?, password = ?', [username, email, password], (err) => {
-
             if(!err) {
                 res.render("login.ejs", { alert: '!'});
             } else {
@@ -99,18 +98,29 @@ app.post("/sign-up" , (req, res) => {
     }
 });
 
-//LOG IN
+//Login API end point route
 app.post("/login" , (req, res) => {
     const {username, password} = req.body;
-
-    // MySQL query 
-
+    // if username and email fields are empty: do nothing
     if (!empty(username) || !empty(email)) {
-        db.query('SELECT username, password FROM users WHERE username = ?', [username], (err, rows) => {
-
+        // MySQL query to select userID, username & password if current username exists with correct password
+        db.query('SELECT userID, username, password FROM users WHERE username = ?', [username], (err, rows) => {
             if(!err) {
-                if (rows[0].password === password) {
-                    res.render("index.ejs", { alert: 'It worked!'});
+                // if the password entered matches the correct exisiting password for a username
+                // then assign a session/login token into the user_login table for that userID
+                if (rows[0]?.password === password) {
+                    // crypto bytes token string being assigned to "token" variable
+                    let token = crypto.randomBytes(16).toString("hex");
+                    
+                    // MySQL query to insert 'userID' & it's 'login_token' into a session row in the 'user_login' table.
+                    db.query("INSERT INTO user_login SET userID = ?, login_token = ?", [rows[0].userID, token], (err) => {
+                        if(err) {
+                            console.log(err);
+                            return;
+                        }
+                        // Landing page to render and display if login is correct and successful
+                        res.render("index.ejs", { alert: 'It worked!', token: token, userID: rows[0].userID });
+                    });
                 } else {
                     res.render("login.ejs", { alert: '!'});
                 }
@@ -121,6 +131,8 @@ app.post("/login" , (req, res) => {
     }
 });
 
+// String function used to represent if string 'value' === empty, null or undefined. Used for representing
+// users table fields above
 function empty(string) {
     return (string === "" || string === null || string === undefined || string === "undefined");
 }
@@ -132,15 +144,26 @@ function empty(string) {
 
 // Viewing/displaying all personnel user records (personnel db table)
 app.get("/home-table", (req, res) => {
-    // MySQL query select statement grabbing to view "active" personnel users only with WHERE clause.
-    db.query('SELECT * FROM personnel WHERE status ="active"', (err, rows) => {
+    let userID = req.query.userID;
+    let token = req.query.token;
 
-        if(!err) {
-            res.render("home-table.hbs", { rows });
+    // MySQL query select statement grabbing all rows from 'user_login' table to see if an existing login token matches
+    // for currently logged in user session to view "home-table.hbs" page
+    db.query("SELECT * FROM user_login WHERE userID = ? AND login_token = ?", [userID, token], (err, logins) => {
+        if(!empty(logins) && logins.length > 0) {
+            // MySQL query select statement grabbing to view "active" personnel users only with WHERE clause.
+            db.query('SELECT * FROM personnel WHERE status ="active"', (err, rows) => {
+
+                if(!err) {
+                    res.render("home-table.hbs", { rows });
+                } else {
+                    console.log(err);
+                }
+                console.log("Data records from personnel table: \n",rows);
+            });
         } else {
-            console.log(err);
+            res.render("login.ejs");
         }
-        console.log("Data records from personnel table: \n",rows);
     });
 });
 
