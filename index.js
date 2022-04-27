@@ -155,7 +155,8 @@ app.get("/home-table", (req, res) => {
             db.query('SELECT * FROM personnel WHERE status ="active"', (err, rows) => {
 
                 if(!err) {
-                    res.render("home-table.hbs", { rows });
+                    let removedUser = req.query.removed;
+                    res.render("home-table.hbs", { rows, removedUser });
                 } else {
                     console.log(err);
                 }
@@ -245,7 +246,8 @@ app.get("/:id", (req, res) => {
     db.query('UPDATE personnel SET status = ? WHERE id = ?', ['deleted', req.params.id], (err, rows) => {
 
         if(!err) {
-            res.redirect("/home-table");
+            let removedUser = encodeURIComponent('User successfully removed.');
+            res.redirect("/home-table?removed=" + removedUser );
         } else {
             console.log(err);
         }
