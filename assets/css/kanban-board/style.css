@@ -49,3 +49,36 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+/*styling for wide card used in page*/
+.kanban-wide-card {
+    background: var(--main-second-colour);
+    box-shadow: var(--shadow-light);
+    color: var(--black-text-colour);
+    padding: 10px 10px 10px 10px;
+    margin: 20px auto 20px auto;
+    width: calc(100% - 40px - 20px);
+    border-radius: 10px;
+    display: block;
+    font-size: var(--font-small);
+}
+
+/*styling for card title text*/
+.card-text {
+    font-size: medium;
+    font-weight: bold;
+}
+
+/*styling for card body text*/
+.card-body-text {
+    font-size: medium;
+}
+
+.card-text-align {
+    text-align: center;
+}
+
+/*space margining between elements*/
+.margin-space {
+    padding: 20px 10px 0px 5px;
+}
