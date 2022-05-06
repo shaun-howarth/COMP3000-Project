@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/home-table">Home Table</a></li>
+    <li class="breadcrumb-item"><a id="home-table" href="/home-table">Home Table</a></li>
     <li class="breadcrumb-item active" aria-current="page">View User</li>
   </ol>
 </nav>
@@ -46,3 +46,12 @@
         </div>
     {{/each}}
 </div>
+
+<script>
+    let token = localStorage.getItem("token");
+    let userID = localStorage.getItem("userID");
+
+    let homeTablePageElement = document.getElementById("home-table");
+    let urlHomeTablePage = homeTablePageElement.getAttribute("href");
+    homeTablePageElement.setAttribute("href", urlHomeTablePage + "?token=" + token + "&userID=" + userID);
+</script>
