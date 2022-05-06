@@ -4,6 +4,9 @@
 <head>
     <link rel="stylesheet" href="/assets/css/global.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/index/style.css" type="text/css">
+    
+    <link rel="apple-touch-icon" href="/assets/images/logo.png">
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +15,16 @@
 
 <body>
 
+<span id="token"><% try { if(typeof token !== undefined) { %><%= token %><% }} catch(error) {} %></span>
+<span id="userID"><% try { if(typeof userID !== undefined) { %><%= userID %><% }} catch(error) {} %></span>
+
 <div class="title-card">
     <span class="title-text">TASKACARD</span>
 </div>
 
 <div class="navbar">
 
-    <a href="/">
+    <a href="/" id="landing">
         <button class="navbar-button">
             Home<svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/></svg>
         </button>
@@ -36,13 +42,13 @@
         </button>
     </a>
 
-    <a href="help">
+    <a href="help" id="help">
         <button class="navbar-button">
             Help<svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zM262.655 90c-54.497 0-89.255 22.957-116.549 63.758-3.536 5.286-2.353 12.415 2.715 16.258l34.699 26.31c5.205 3.947 12.621 3.008 16.665-2.122 17.864-22.658 30.113-35.797 57.303-35.797 20.429 0 45.698 13.148 45.698 32.958 0 14.976-12.363 22.667-32.534 33.976C247.128 238.528 216 254.941 216 296v4c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12v-1.333c0-28.462 83.186-29.647 83.186-106.667 0-58.002-60.165-102-116.531-102zM256 338c-25.365 0-46 20.635-46 46 0 25.364 20.635 46 46 46s46-20.636 46-46c0-25.365-20.635-46-46-46z"/></svg>
         </button>
     </a>
 
-    <a href="settings">
+    <a href="settings" id="settings">
         <button class="navbar-button">
             Settings<svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"/></svg>
         </button>
@@ -58,12 +64,12 @@
     
     <div class="small-card">
         <div class="card-text-align">
-            <span class="card-text">Welcome:</span>
+            <span class="card-text">Welcome: <% try { if(typeof username !== undefined) { %><%= username %><% }} catch(error) {} %></span>
         </div>
 
         <div class="button-div">
             <div class="margin-space">
-                <a href="home-table">
+                <a href="home-table" id="home-table">
                     <button class="page-button">Personnel Management Table</button>
                 </a>
             </div>
@@ -72,21 +78,94 @@
 
     <div class="small-card">
         <div class="card-text-align">
-            <span class="card-text">Need to create a new Kanban project board?</span>
+            <span class="card-text">Need to create a Kanban project board?</span>
         </div>
 
         <div class="button-div">
             <div class="margin-space">
-                <a href="kanban-board">
-                    <button class="page-button">Create New Project Board</button>
+                <a href="kanban-board" id="kanban-board">
+                    <button class="page-button">View Kanban Board</button>
                 </a>
             </div>
         </div>
-
     </div>
+
+    <a href="view-personnel" id="view-personnel"></a>
+    <a href="add-personnel" id="add-personnel"></a>
+    <a href="edit-personnel" id="edit-personnel"></a>
+
 
 
 </div>
+<script>
+    function empty(string) {
+        return (string === "" || string === null || string === undefined || string === "undefined");
+    }
+
+    let tokenElement = document.getElementById("token");
+    let token = tokenElement.textContent;
+
+    if(!empty(token)) {
+        localStorage.setItem("token", token);
+        tokenElement.remove();
+    } else {
+        token = localStorage.getItem("token");
+    }
+
+    let userIDElement = document.getElementById("userID");
+    let userID = userIDElement.textContent;
+
+    if(!empty(userID)) {
+        localStorage.setItem("userID",userID);
+        userIDElement.remove();
+    } else {
+        userID = localStorage.getItem("userID");
+    }
+
+    console.log(token, userID);
+
+
+    
+    let homeTableElement = document.getElementById("home-table");
+    let urlHomeTable = homeTableElement.getAttribute("href");
+    homeTableElement.setAttribute("href", urlHomeTable + "?token=" + token + "&userID=" + userID);
+
+
+    let viewPersonnelElement = document.getElementById("view-personnel");
+    let urlViewPersonnel = viewPersonnelElement.getAttribute("href");
+    viewPersonnelElement.setAttribute("href", urlViewPersonnel + "?token=" + token + "&userID=" + userID);
+
+
+    let addPersonnelElement = document.getElementById("add-personnel");
+    let urlAddPersonnel = addPersonnelElement.getAttribute("href");
+    viewPersonnelElement.setAttribute("href", urlAddPersonnel + "?token=" + token + "&userID=" + userID);
+
+
+    let editPersonnelElement = document.getElementById("edit-personnel");
+    let urlEditPersonnel = editPersonnelElement.getAttribute("href");
+    editPersonnelElement.setAttribute("href", urlEditPersonnel + "?token=" + token + "&userID=" + userID);
+
+
+    let kanbanBoardElement = document.getElementById("kanban-board");
+    let urlKanbanBoard = kanbanBoardElement.getAttribute("href");
+    kanbanBoardElement.setAttribute("href", urlKanbanBoard + "?token=" + token + "&userID=" + userID);
+
+
+    let landingPageElement = document.getElementById("landing");
+    let urlLandingPage = landingPageElement.getAttribute("href");
+    landingPageElement.setAttribute("href", urlLandingPage + "?token=" + token + "&userID=" + userID);
+
+
+    let helpPageElement = document.getElementById("help");
+    let urlHelpPage = helpPageElement.getAttribute("href");
+    helpPageElement.setAttribute("href", urlHelpPage + "?token=" + token + "&userID=" + userID);
+
+
+    let settingsPageElement = document.getElementById("settings");
+    let urlSettingsPage = settingsPageElement.getAttribute("href");
+    settingsPageElement.setAttribute("href",  urlSettingsPage + "?token=" + token + "&userID=" + userID);
+
+</script>
 
 </body>
 </html>
