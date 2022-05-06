@@ -48,3 +48,7 @@
 button:hover {
     background-color: var(--page-button-hover-colour);
 }
+
+#token {
+    display: none;
+}
