@@ -30,7 +30,7 @@
 .page-button {
     fill: var(--button-icon-colour);
     color: var(--black-text-colour);
-    background-color: var(--main-colour);
+    background-color: var(--page-button-colour);
     border-radius: 10px 10px 10px 10px;
     display: inline-block;
     font-size: large;
