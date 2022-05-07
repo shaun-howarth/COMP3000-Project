@@ -3,7 +3,7 @@
     --font-small: 16px;
     --font-medium: 18px;
     --font-large: 24px;
-    --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif;
+    --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif !important;
 
 /*colours*/
     --main-colour: rgb(189,229,224);
@@ -14,16 +14,29 @@
 
     --main-button-colour: rgb(223,131,38);
     --button-hover-colour: rgb(179,101,23);
+    --page-button-colour: rgb(152, 206, 198);
     --page-button-hover-colour: rgb(131,163,159);
     --button-icon-colour: rgb(14,12,10);
 
     --title-card-shadow: rgb(209,122,35);
     --nav-bar-outline: rgb(223,131,38);
 
+    /*kanban-board colours*/
     --kanban-area: rgb(0,149,120);
     --kanban-drop: rgba(0,0,0,0.25);
     --taskcard-colour: rgba(0,0,0,0.1);
 
+    /*personnel table colours*/
+    --table-text-colour: rgb(33, 37, 41);
+    --table-border-colour: rgb(33, 37, 41);
+    --h2-colour: rgb(33, 37, 41);
+    --h3-colour: rgb(33, 37, 41);
+    --comments-title-colour: rgb(33, 37, 41);
+    --comments-colour: rgb(33, 37, 41);
+    --link-colour:rgb(13, 110, 253);
+    --link-inner-colour: rgb(108, 117, 125);
+    --link-tag-colour: rgb(108, 117, 125);
+    
     /*text-colours*/
     --black-text-colour: rgb(50,48,48);
     --white-text-colour: rgb(255,255,255);
@@ -112,8 +125,8 @@ body {
 
 /*HR break line styling*/
 hr {
-    border: none;
-    height: 4px;
+    border: none !important;
+    height: 4px !important;
     background-color: var(--main-button-colour);
 }
 
@@ -142,4 +155,42 @@ hr {
     display: inline-block;
     font-size: var(--font-smaller);
     vertical-align: top;
+}
+
+/*personnel table colours: set for when the colour variables change colour in theme.css*/
+.table {
+    color: var(--table-text-colour);
+    border-color: var(--table-border-colour);
+}
+h2 {
+    color: var(--h2-colour);
+}
+
+h3 {
+    color: var(--h3-colour);
+}
+
+#comments-title {
+    color: var(--comments-title-colour);
+}
+
+#comments-view {
+    color: var(--comments-colour);
+}
+
+a, a:hover {
+    color: var(--link-colour);
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: var(--link-inner-colour);
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    color: var(--link-tag-colour);
+}
+
+.alert-success {
+    background-color: #ffff83;
 }
