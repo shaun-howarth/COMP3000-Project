@@ -1,0 +1,18 @@
+[data-theme="dark"] {
+    /*colours*/
+    --main-colour: rgb(86,96,110);
+
+    /*personnel table colours*/
+    --table-text-colour: rgb(243, 240, 240);
+    --table-border-colour: rgb(243, 240, 240);
+    --h2-colour: rgb(243, 240, 240);
+    --h3-colour: rgb(243, 240, 240);
+    --comments-title-colour: rgb(243, 240, 240);
+    --comments-colour: rgb(243, 240, 240);
+    --link-colour:rgb(223,131,38);
+    --link-inner-colour: rgb(243, 240, 240);
+    --link-tag-colour: rgb(243, 240, 240);
+
+    /*shadows*/
+    --shadow-light: 0 1px 1px rgba(0,0,0,0.08), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.16), 0 8px 8px rgba(0,0,0,0.20);
+}
