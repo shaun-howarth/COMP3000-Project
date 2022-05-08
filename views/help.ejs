@@ -108,24 +108,22 @@
 
 </div>
 <script>
+    // localStorage configuration for "userID" & "token" data objects for login session for user account.
     let token = localStorage.getItem("token");
     let userID = localStorage.getItem("userID");
-
 
     let landingPageElement = document.getElementById("landing");
     let urlLandingPage = landingPageElement.getAttribute("href");
     landingPageElement.setAttribute("href", urlLandingPage + "?token=" + token + "&userID=" + userID);
 
-
     let helpPageElement = document.getElementById("help");
     let urlHelpPage = helpPageElement.getAttribute("href");
     helpPageElement.setAttribute("href", urlHelpPage + "?token=" + token + "&userID=" + userID);
 
-
     let settingsPageElement = document.getElementById("settings");
     let urlSettingsPage = settingsPageElement.getAttribute("href");
     settingsPageElement.setAttribute("href",  urlSettingsPage + "?token=" + token + "&userID=" + userID);
-
 </script>
+
 </body>
 </html>

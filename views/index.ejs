@@ -105,6 +105,7 @@
         return (string === "" || string === null || string === undefined || string === "undefined");
     }
 
+    // localStorage configuration for "userID" & "token" data objects for login session for user account.
     let tokenElement = document.getElementById("token");
     let token = tokenElement.textContent;
 
@@ -127,8 +128,6 @@
 
     console.log(token, userID);
 
-
-    
     let homeTableElement = document.getElementById("home-table");
     let urlHomeTable = homeTableElement.getAttribute("href");
     homeTableElement.setAttribute("href", urlHomeTable + "?token=" + token + "&userID=" + userID);
@@ -167,7 +166,6 @@
     let settingsPageElement = document.getElementById("settings");
     let urlSettingsPage = settingsPageElement.getAttribute("href");
     settingsPageElement.setAttribute("href",  urlSettingsPage + "?token=" + token + "&userID=" + userID);
-
 </script>
 
 </body>

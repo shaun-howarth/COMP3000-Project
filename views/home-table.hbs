@@ -47,6 +47,7 @@
 </table>
 
 <script>
+    // localStorage configuration for "userID" & "token" data objects for login session for user account.
     let token = localStorage.getItem("token");
     let userID = localStorage.getItem("userID");
 
@@ -61,21 +62,23 @@
       element.setAttribute("href", url + "?token=" + token + "&userID=" + userID);
     }
 
-  let editElements = document.getElementsByClassName("edit");
-  for(let i = 0; i < editElements.length; i++) {
-    let element = editElements[i];
-    let url = element.getAttribute("href");
-    element.setAttribute("href", url + "?token=" + token + "&userID=" + userID);
-  }
+    let editElements = document.getElementsByClassName("edit");
+    for(let i = 0; i < editElements.length; i++) {
+      let element = editElements[i];
+      let url = element.getAttribute("href");
+      element.setAttribute("href", url + "?token=" + token + "&userID=" + userID);
+    }
 
-  let deleteElements = document.getElementsByClassName("delete");
-  for(let i = 0; i < deleteElements.length; i++) {
-    let element = deleteElements[i];
-    let href = element.getAttribute("data-href");
-    let url = href + "?token=" + token + "&userID=" + userID;
+    let deleteElements = document.getElementsByClassName("delete");
+    for(let i = 0; i < deleteElements.length; i++) {
+      let element = deleteElements[i];
+      let href = element.getAttribute("data-href");
+      let url = href + "?token=" + token + "&userID=" + userID;
 
-    element.addEventListener("click", () => {
-      let xhr = new XMLHttpRequest();
+      // event listner being added to delete personnel record buton: will trigger window to reload.
+      // XMLHttpRequest set to reload so it doesn't clash with delete personnel API end point request.
+      element.addEventListener("click", () => {
+        let xhr = new XMLHttpRequest();
 
       xhr.addEventListener("readystatechange", () => {
         if(xhr.readyState === XMLHttpRequest.DONE) {
