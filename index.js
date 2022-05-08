@@ -11,7 +11,7 @@ dotenv.config({ path: './.env'});
 
 // server port number
 app.listen(4400, () => {
-    console.log("Server started on Port 4000");
+    console.log("Server started on Port 4400");
 });
 
 let engines = require("consolidate");
@@ -20,6 +20,7 @@ const { request } = require("http");
 //TEMPLATING ENGINES FOR EXPRESS API
 // ejs template engine
 app.set("view engine", "ejs");
+
 // handlebars template engine
 // setting extension name for handlebars (files) "hbs"
 const handlebars = exphbs.create({ extname: ".hbs",});
@@ -56,9 +57,20 @@ db.connect((err) => {
 });
 
 
-// EJS render page routes/ API end point routes.
+// EJS render page routes/ API end point routes --------------------------------------
 
-// Index page
+// Login page GET/login API end point route
+app.get("/login", (req, res) => {
+    res.render("login.ejs");
+});
+
+// User sign up page GET/user sign up  API end point route
+app.get("/user-sign-up" , (req, res) => {
+    res.render("user-sign-up.ejs");
+});
+
+
+// Index page GET"/" API end point route
 app.get("/", (req, res) => {
     let userID = req.query.userID;
     let token = req.query.token;
@@ -79,7 +91,7 @@ app.get("/", (req, res) => {
     });
 });
 
-// Help page
+// Help page GET/help API end point route
 app.get("/help", (req, res) => {
     let userID = req.query.userID;
     let token = req.query.token;
@@ -95,12 +107,7 @@ app.get("/help", (req, res) => {
     });
 });
 
-// Login page
-app.get("/login", (req, res) => {
-    res.render("login.ejs");
-});
-
-// Setting page
+// Setting page GET/settings API end point route
 app.get("/settings" , (req, res) => {
     let userID = req.query.userID;
     let token = req.query.token;
@@ -116,7 +123,7 @@ app.get("/settings" , (req, res) => {
     });
 });
 
-// Kanban-board web page
+// Kanban-board page GET/kanban-board API end point route
 app.get("/kanban-board" , (req, res) => {
     let userID = req.query.userID;
     let token = req.query.token;
@@ -132,13 +139,7 @@ app.get("/kanban-board" , (req, res) => {
     });
 });
 
-// User sign up page
-app.get("/user-sign-up" , (req, res) => {
-    res.render("user-sign-up.ejs");
-});
-
-
-// User /sign-up API end point route
+// User sign up POST/sign-up API end point route
 app.post("/sign-up" , (req, res) => {
     const {username, email, password} = req.body;
     // if username, email and password fields are empty: do nothing
@@ -154,7 +155,7 @@ app.post("/sign-up" , (req, res) => {
     }
 });
 
-// User /login API end point route
+// User login POST/login API end point route
 app.post("/login" , (req, res) => {
     const {username, password} = req.body;
     // if username and email fields are empty: do nothing
@@ -194,11 +195,10 @@ function empty(string) {
 }
 
 
+// HBS render page routes/ API end point routes (Personnel Management Table) --------------------------------------
 
-//--------------------------------------------------------------------------------------------------
 
-
-// Viewing/displaying all personnel user records (personnel db table)
+// Viewing/displaying all personnel user records (personnel db table) GET/home-table API end point route
 app.get("/home-table", (req, res) => {
     let userID = req.query.userID;
     let token = req.query.token;
@@ -224,7 +224,7 @@ app.get("/home-table", (req, res) => {
     });
 });
 
-// Finding personnel user by seacrh
+// Finding personnel user by seacrh POST/home-table API end point route
 app.post("/home-table", (req, res) => {
     let searchRecord = req.body.search;
     // MySQL query for search input box feature on home-table wep page.
@@ -251,6 +251,7 @@ app.post("/home-table", (req, res) => {
     });
 });
 
+// Add personnel page GET/add-personnel API end point route
 app.get("/add-personnel", (req, res) => {
     let userID = req.query.userID;
     let token = req.query.token;
@@ -266,7 +267,7 @@ app.get("/add-personnel", (req, res) => {
     });
 });
 
-// Add new user/ personnel member record
+// Add new personnel record POST/add-personnel API end point route
 app.post("/add-personnel", (req, res) => {
     const { first_name, last_name, email, telephone, comments } = req.body;
 
@@ -282,7 +283,7 @@ app.post("/add-personnel", (req, res) => {
     });
 });
 
-// Edit (view user) personnel user record
+// Edit (view) personnel record GET/edit-personnel/:id API end point route
 app.get("/edit-personnel/:id", (req, res) => {
     let userID = req.query.userID;
     let token = req.query.token;
@@ -307,8 +308,7 @@ app.get("/edit-personnel/:id", (req, res) => {
     });
 });
 
-
-// Edit (update user) personnel user record
+// Edit (update) personnel record POST/edit-personnel/:id API end point route
 app.post("/edit-personnel/:id", (req, res) => {
     const { first_name, last_name, email, telephone, comments } = req.body;
     // MySQL query for editing a personnel user record.
@@ -331,7 +331,7 @@ app.post("/edit-personnel/:id", (req, res) => {
     });
 });
 
-// Deleteing pesonnel record from table
+// Deleting personnel record from table GET/:id API end point route
 app.get("/:id", (req, res) => {
     
     db.query('UPDATE personnel SET status = ? WHERE id = ?', ['deleted', req.params.id], (err, rows) => {
@@ -339,14 +339,14 @@ app.get("/:id", (req, res) => {
         if(!err) {
             let removedUser = encodeURIComponent('User successfully removed.');
             res.redirect("/home-table?removed=" + removedUser );
-        } else {
+        } else { 
             console.log(err);
         }
         console.log("Record removed: \n",rows);
     });
 });
 
-// View single pesonnel record details
+// View single personnel record details GET/view-personnel/:id API end point route
 app.get("/view-personnel/:id", (req, res) => {
     let userID = req.query.userID;
     let token = req.query.token;
