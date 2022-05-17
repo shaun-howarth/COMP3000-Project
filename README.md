@@ -1,5 +1,8 @@
 # COMP-3000 Final Year Computing Project
 
+## Disclaimer
+This is a piece of university coursework as part of my final year project.
+
 ## Taskacard
 
 This repository contains the source code and assets for the COMP3000 final year university software project. This was an individual piece of work that was carried out with the modulem being worth 40 credits for the final year.
@@ -12,6 +15,10 @@ Taskacard is a cross-platform application that is an android mobile app and web 
 
 ![Taskacard poster](https://user-images.githubusercontent.com/57568918/167933548-f80de4a9-4682-4ed2-86cb-658025dd58d4.jpg)
 
+## Brief Demo
+A brief video has been recorded to show the application running: https://youtu.be/EBlW0Fo1T_o
+
+
 ## Tech Stack
 
 * Database: MySQL
@@ -23,6 +30,8 @@ Taskacard is a cross-platform application that is an android mobile app and web 
 ## Allocated Lecturer as Project Supervisor:
 
 Dr Liz Stuart (Associate Professor in Computing: University of Plymouth: https://www.plymouth.ac.uk/staff/liz-stuart)
+
+
 
 ## Third Party visualisation tools used (sources credited):
 
@@ -53,17 +62,19 @@ Bootstrap Icons (CDN) link:
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 
-
 ## Web App
 ### Dependencies
 ### NPM
 
-"body-parser": "^1.20.0"
-"consolidate": "^0.16.0"
-"dotenv": "^16.0.0"
-"ejs": "^3.1.6"
-"express": "^4.17.1"
-"express-handlebars": "^6.0.5"
-"mysql": "^2.18.1"
-"node": "^17.1.0"
-"nodemon": "^2.0.15"
+
+ NPM Package  | Version
+------------- | -------------
+ body-parser  | 1.20.0
+ consolidate  | 0.16.0
+      dotenv  | 16.0.0
+         ejs  | 3.1.6
+     express  | 3.1.6
+ handlebars   | 6.0.5
+       mysql  | 2.18.1
+         node | 17.1.0
+      nodemon | 2.0.15
