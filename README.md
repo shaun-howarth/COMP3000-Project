@@ -71,7 +71,7 @@ Bootstrap Icons (CDN) link:
 ------------- | -------------
  body-parser  | 1.20.0
  consolidate  | 0.16.0
-      dotenv  | 16.0.0
+ dotenv  | 16.0.0
          ejs  | 3.1.6
      express  | 3.1.6
  handlebars   | 6.0.5
