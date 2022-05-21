@@ -25,7 +25,7 @@ export default class Kanban {
             },
             {
                 id: 3,
-                title: "Complete"
+                title: "Completed"
             }
         ];
     }
